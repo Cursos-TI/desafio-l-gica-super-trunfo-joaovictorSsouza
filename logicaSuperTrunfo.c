@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 // Desafio Super Trunfo - Países
-// Tema 2 - Comparação das Cartas
+// Tema 1 - Cadastro das Cartas
 // Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
 // Siga os comentários para implementar cada parte do desafio.
-//Teste João Victor Azevedo de Souza.
+//Teste João Victor
 
 float Calculo_super(int popu, float area, float pib, int npt, float densi, float ppc ){
     float densi_inversa = 1 / densi;
@@ -22,12 +22,32 @@ float pibpercatita(float pib, int popu){
     return resultado;
 }
 
+int menu_interativo(){
+
+    int opc = 0;
+    printf("ESCOLHA O ATRIBUTO DO CONFRONTO:\n");
+    printf("----------------------------------------------\n");
+    printf("1) POPULAÇÃO\n");
+    printf("2) ÁREA\n");
+    printf("3) PIB\n");
+    printf("4) NÚMERO DE PONTOS TURÍSTICOS\n");
+    printf("5) DENSIDADE DEMOGRÁFICA\n");
+    printf("6) SAIR DO CONFRONTO\n");
+    printf("----------------------------------------------\n");
+    printf("QUAL ATRIBUTO DESEJA PARA O CONFRONTO? ");
+    scanf("%d", &opc);
+
+    return opc;
+   
+}
+
+
 int main() {
     // Definição das variaveis: 
     char estado1, estado2;
     char cod1[50], cod2[50];
     char nome1[50], nome2[50];
-    int popu1, popu2;
+    int popu1, popu2, opc;
     float area1, area2;
     float pib1, pib2;
     int npt1, npt2;
@@ -136,53 +156,79 @@ int main() {
     // Chamando a função do super poder
         resultadoC1 = Calculo_super(popu1, area1, pib1, npt1, densidade1, ppc1);
         resultadoC2 = Calculo_super(popu2, area2, pib2, npt2, densidade2, ppc2);
+
+    // Criação do duelo das cartas
+    printf(" CONFONTRO DAS CARTAS \n");
+
+    //Divisão
+    printf("----------------------------------------------\n");
+
+    // Menu interativo usando switch
+    opc = menu_interativo();
+
+    switch (opc) //Trabalho de opções dentro do menu
+    {
+    case 1: //população
+        printf("NOME: %s | POPULAÇÃO: %d X NOME: %s | POPULAÇÃO: %d \n", nome1, popu1, nome2, popu2);
+        if (popu1 > popu2){
+            printf("%s VENCEU!\n", nome1);
+        }else if (popu2 > popu1){
+            printf("%s VENCEU!\n", nome2);
+        }else{
+            printf("EMPATE!\n");
+        }
+        break;
+
+    case 2://Area
+         printf("NOME: %s | ÁREA: %f X NOME: %s | ÁREA: %f \n", nome1, area1, nome2, area2);
+         if (area1 > area2){
+            printf("%s VENCEU!\n", nome1);
+        }else if (area2 > area1){
+            printf("%s VENCEU!\n", nome2);
+        }else{
+            printf("EMPATE!\n");
+        }
+        break;
+
+    case 3://PIB
+         printf("NOME: %s | PIB: %f X NOME: %s | PIB: %f \n", nome1, pib1, nome2, pib2);
+         if (pib1 > pib2){
+            printf("%s VENCEU!\n", nome1);
+        }else if (pib2 > pib1){
+            printf("%s VENCEU!\n", nome2);
+        }else{
+            printf("EMPATE!\n");
+        }
+        break;
+
+    case 4://NUMERO DE PONTOS TURISTICOS
+         printf("NOME: %s | PONTOS TURISTICOS: %d X NOME: %s | PONTOS TURISTICOS: %d \n", nome1, npt1, nome2, npt2);
+         if (npt1 > npt2){
+            printf("%s VENCEU!\n", nome1);
+        }else if (npt2 > npt1){
+            printf("%s VENCEU!\n", nome2);
+        }else{
+            printf("EMPATE!\n");
+        }
+        break;
+
+    case 5://Densidade 
+         printf("NOME: %s | DENSIDADE: %f X NOME: %s | DENSIDADE: %f \n", nome1, densidade1, nome2, densidade2);
+         if (densidade1 < densidade2){
+            printf("%s VENCEU!\n", nome1);
+        }else if (densidade2 < densidade1){
+            printf("%s VENCEU!\n", nome2);
+        }else{
+            printf("EMPATE!\n");
+        }
+        break;
+
+    case 6://Sair
+        printf("FECHANDO O CONFRONTO...\n");
+        break;
         
-    // Divisão
-    printf("----------------------------\n");
-    // Criação do duelo das cartas
-    printf("   COMPARAÇÕES DAS CARTAS   \n");
-    // Divisão
-    printf("----------------------------\n");
-
-    printf("CARTA 01 = 1 >>> CARTA 02 = 0\n");
-
-    // Divisão
-    printf("----------------------------\n");
-
-    // comparação das cartas
-    printf("População: %d\n", popu1 > popu2);
-    printf("Area: %d\n", area1 > area2);
-    printf("PIB: %d\n", pib1 > pib2);
-    printf("Ponto Turistico: %d\n", npt1 > npt2);
-    printf("Densidade Populacional: %d\n", densidade1 < densidade2);
-    printf("PIB per capita: %d\n", ppc1 > ppc2);
-    printf("Super poder: %d\n", resultadoC1 > resultadoC2);
-
-    // Divisão
-    printf("----------------------------\n");
-
-    // Criação do duelo das cartas
-    printf(" BATALHA DOS PONTOS TURISTICOS \n");
-
-    // Divisão
-    printf("----------------------------\n");
-
-    //Enunciado da batalha
-    printf("%s: %d Pontos Turisticos X %s: %d Pontos Turisticos\n", nome1, npt1, nome2, npt2);
-
-    // Divisão
-    printf("----------------------------\n");
-
-    if (npt1 > npt2){
-        printf("CARTA 01 (%s): VENCEU! PARABÉNS! \n", nome1);
-    }else{
-        printf("CARTA 02 (%s): VENCEU! PARABÉNS! \n", nome2);
+    default:
+        break;
     }
-
-    // Divisão
-    printf("----------------------------\n");
-    
-
-    return 0;
 }
 
